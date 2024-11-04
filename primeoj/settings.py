@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'problems',
     'users',
     'judge',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'primeoj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # MySQL backend for Django
-        'NAME': 'primeoj_db',                   # Database name
+        'NAME': 'PrimeOJ_DB',                   # Database name
         'USER': 'root',                         # MySQL user
         'PASSWORD': '99mominur',                # MySQL password
         'HOST': 'localhost',                    # Database host (default: localhost)
@@ -129,3 +130,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+AUTH_USER_MODEL = 'users.CustomUser'
+

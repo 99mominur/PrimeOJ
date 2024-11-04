@@ -1,0 +1,10 @@
+{%extends "base.html"%}
+{%block content%}
+
+{%for contest in contests%}
+
+<a href="{%url 'contest_details' contest.id %}">{{contest}}</a>
+
+{%endfor%}
+
+{%endblock%}
