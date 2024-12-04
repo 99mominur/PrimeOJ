@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 text-gray-100 flex flex-col items-center justify-center">
+    <!-- Profile Header -->
+    <div class="text-center space-y-6">
+        <h1 class="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+            Welcome, {{ user.username }}!
+        </h1>
+        <p class="text-lg">
+            Manage your account settings below and enjoy the cheerful smiley! 😊
+        </p>
+    </div>
+
+    <!-- Smiley Face -->
+    <div class="mt-16">
+        <div class="w-32 h-32 bg-yellow-400 rounded-full flex items-center justify-center text-6xl font-bold shadow-lg">
+            🙂
+        </div>
+    </div>
+
+    <!-- Options Section -->
+    <div class="mt-8 flex flex-col space-y-6">
+        <!-- Password Change -->
+        <a href="{% url 'password_change' %}" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 px-6 rounded-full shadow-md transition-all">
+            Change Password 🔒
+        </a>
+        
+        <!-- Logout -->
+        <form method="POST" action="{% url 'logout' %}" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-6 rounded-full shadow-md transition-all">
+                Logout 🚪
+            </button>
+        </form>
+        
+    </div>
+</div>
+{% endblock %}

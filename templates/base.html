@@ -7,19 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900 text-white-900">
-    <header class="bg-gray-400 text-white p-4">
+    <header class="bg-gray-800 text-white p-4">
         <nav class="container mx-auto flex justify-between">
             <a href="{% url 'home' %}" class="text-lg font-bold">PrimeOJ</a>
-            <div>
+            <div class="flex space-x-4">
                 {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'logout' %}" class="inline">
-                        {% csrf_token %}
-                        <button class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded">Logout</button>
-                    </form>
+                <a href="{% url 'profile' %}" class="bg-teal-600 hover:bg-teal-700 text-white py-1 px-4  rounded">Profile</a>
+                    
                 {% else %}
-                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded">Login</a>
+                    <a href="{% url 'login' %}" class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded">Login</a>
                 {% endif %}
+                
+                    <a href="{% url 'problem_list' %}" class="bg-teal-600 hover:bg-teal-700 text-white py-1 px-3 rounded">Problem List</a>
+                
             </div>
+            
         </nav>
     </header>
     <main>

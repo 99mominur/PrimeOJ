@@ -1,102 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PrimeOJ - Welcome</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-900 text-white font-sans">
-  <!-- Hero Section -->
-  <header class="relative bg-gray-800 py-20">
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade">Welcome to <span class="text-blue-500">PrimeOJ</span></h1>
-      <p class="text-lg md:text-xl mb-8">Unleash Your Potential Through Problem Solving</p>
-      <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg animate-bounce">
-        Get Started
-      </button>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-900 text-gray-100">
+    <div class="container mx-auto px-4 py-16">
+        <!-- Welcome Section -->
+        <div class="text-center space-y-6">
+            <h1 class="text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500">
+                Hello, {{ user.username }}!
+            </h1>
+            <p class="text-lg max-w-2xl mx-auto leading-relaxed">
+                Welcome to <span class="font-bold text-teal-400">PrimeOJ</span>, your gateway to mastering programming skills! 
+                Start solving problems, challenge yourself, and grow into a stronger coder today. 🚀
+            </p>
+        </div>
+
+        <!-- Why Problem Solving Section -->
+        <div class="mt-16 space-y-12">
+            <h2 class="text-3xl font-bold text-center underline decoration-yellow-500">
+                Why Problem Solving Matters
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="text-6xl text-yellow-400">⚙️</div>
+                    <h3 class="mt-4 text-xl font-semibold">Sharpen Your Skills</h3>
+                    <p class="mt-2 text-gray-300">
+                        Practice coding challenges to refine your problem-solving ability and logical thinking.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="text-6xl text-teal-400">🌟</div>
+                    <h3 class="mt-4 text-xl font-semibold">Build Confidence</h3>
+                    <p class="mt-2 text-gray-300">
+                        Gain confidence by tackling a variety of problems that prepare you for real-world scenarios.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center bg-gray-800 p-6 rounded-lg shadow-lg">
+                    <div class="text-6xl text-pink-400">🤝</div>
+                    <h3 class="mt-4 text-xl font-semibold">Collaborate & Compete</h3>
+                    <p class="mt-2 text-gray-300">
+                        Join contests, collaborate in teams, and compete with coders worldwide for a thrilling experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inspirational Message Section -->
+        <div class="mt-16 text-center">
+            <div class="text-4xl animate-pulse">🎯</div>
+            <h2 class="text-2xl font-bold text-teal-400 mt-4">
+                Ready to Solve Problems and Make an Impact?
+            </h2>
+            <p class="mt-2 text-gray-300 max-w-xl mx-auto">
+                Start exploring challenges, push your boundaries, and make every line of code count. Your journey starts here!
+            </p>
+        </div>
     </div>
-    <div class="absolute top-0 left-0 w-full h-full">
-      <div class="bg-gradient-to-b from-blue-500/20 via-gray-900/60 to-gray-900 absolute inset-0"></div>
-      <div id="animated-bg" class="w-full h-full"></div>
-    </div>
-  </header>
-
-  <!-- Why Problem Solving Matters Section -->
-  <section class="py-16 bg-gray-800">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-8">Why Problem Solving?</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/64/000000/external-thinking-business-and-finance-flat-flat-juicy-fish.png" alt="Logical Thinking" class="mx-auto mb-4">
-          <h3 class="text-xl font-semibold">Improves Logical Thinking</h3>
-          <p class="mt-2 text-gray-300">Challenge yourself with problems to sharpen your mind.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/64/000000/external-code-coding-flat-flat-juicy-fish.png" alt="Coding Skills" class="mx-auto mb-4">
-          <h3 class="text-xl font-semibold">Enhances Coding Skills</h3>
-          <p class="mt-2 text-gray-300">Practice Python, C++, Java, and more with real challenges.</p>
-        </div>
-        <div class="bg-gray-700 p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all">
-          <img src="https://img.icons8.com/external-flat-juicy-fish/64/000000/external-trophy-sport-flat-flat-juicy-fish.png" alt="Competitions" class="mx-auto mb-4">
-          <h3 class="text-xl font-semibold">Prepares for Competitions</h3>
-          <p class="mt-2 text-gray-300">Get ready to shine in ICPC and other coding contests.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Stats Section -->
-  <section class="py-16 bg-gray-900">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-8">Our Achievements</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div>
-          <p class="text-4xl font-bold text-blue-500" id="problems-solved">50,000+</p>
-          <p class="mt-2 text-gray-300">Problems Solved</p>
-        </div>
-        <div>
-          <p class="text-4xl font-bold text-blue-500" id="contests-hosted">100+</p>
-          <p class="mt-2 text-gray-300">Contests Hosted</p>
-        </div>
-        <div>
-          <p class="text-4xl font-bold text-blue-500" id="users-participating">10,000+</p>
-          <p class="mt-2 text-gray-300">Users Participating</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Call to Action Section -->
-  <footer class="py-12 bg-gray-800 text-center">
-    <p class="text-lg">Start Your Problem-Solving Journey Today!</p>
-    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 mt-4 rounded">
-      Join Now
-    </button>
-  </footer>
-
-  <!-- GSAP Animation Script -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Hero background animation
-      gsap.to("#animated-bg", {
-        backgroundPosition: "200% 200%",
-        duration: 20,
-        repeat: -1,
-        ease: "linear"
-      });
-
-      // Counter animation
-      const counters = ["problems-solved", "contests-hosted", "users-participating"];
-      counters.forEach(id => {
-        gsap.fromTo(
-          `#${id}`,
-          { textContent: 0 },
-          { textContent: parseInt(document.getElementById(id).textContent), duration: 3, ease: "power1.inOut", snap: "textContent" }
-        );
-      });
-    });
-  </script>
-</body>
-</html>
+</div>
+{% endblock %}
