@@ -24,6 +24,5 @@ urlpatterns = [
     # path('judge', include('judge.urls')),
     path('problems/', include('problems.urls')),
     path('users/', include('users.urls')),
-    path('contests/', include('contests.urls')),
-    
+    path('', include('shomservai.urls')),
 ]

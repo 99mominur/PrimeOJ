@@ -31,17 +31,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'contests',
     'problems',
     'users',
     'judge',
     'home',
+    'shomservai',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 AUTH_USER_MODEL = 'users.CustomUser'
 
+LOGIN_REDIRECT_URL = '/'  # Redirect to homepage or any other view
+LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '99mominur@gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'mjrayplaxjfreowh'  # App password generated above
+DEFAULT_FROM_EMAIL = '99mominur@gmail.com'

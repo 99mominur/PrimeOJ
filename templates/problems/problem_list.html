@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bg-gray-900 text-white min-h-screen flex flex-col">
+  <div class="p-6 border-b border-gray-600 bg-gray-800">
+    <h1 class="text-3xl font-bold mb-4">Problem List</h1>
+
+    <form method="get" class="flex flex-wrap gap-4">
+      <!-- Search Input -->
+      <div class="flex-1">
+        <label for="search" class="block text-sm font-medium mb-1">Search by Name or Tag:</label>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          placeholder="Search problems..."
+          value="{{ request.GET.search }}"
+          class="bg-gray-700 text-white w-full p-2 rounded border border-gray-600"
+        />
+      </div>
+
+      <!-- Rating Filter -->
+      <div>
+        <label for="rating" class="block text-sm font-medium mb-1">Rating:</label>
+        <select
+          name="rating"
+          id="rating"
+          class="bg-gray-700 text-white p-2 rounded border border-gray-600"
+        >
+          <option value="">All</option>
+          {% for rating in distinct_ratings %}
+          <option value="{{ rating }}" {% if request.GET.rating == rating|stringformat:"d" %}selected{% endif %}>
+            {{ rating }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Solve Status -->
+      <div>
+        <label for="status" class="block text-sm font-medium mb-1">Solve Status:</label>
+        <select
+          name="status"
+          id="status"
+          class="bg-gray-700 text-white p-2 rounded border border-gray-600"
+        >
+          <option value="">All</option>
+          <option value="solved" {% if request.GET.status == 'solved' %}selected{% endif %}>Solved</option>
+          <option value="unsolved" {% if request.GET.status == 'unsolved' %}selected{% endif %}>Unsolved</option>
+        </select>
+      </div>
+
+      <!-- Tags Filter -->
+      <div>
+        <label for="tags" class="block text-sm font-medium mb-1">Tags:</label>
+        <select
+          name="tags"
+          id="tags"
+          multiple
+          class="bg-gray-700 text-white p-2 rounded border border-gray-600"
+        >
+          {% for tag in distinct_tags %}
+          <option value="{{ tag.id }}" {% if tag.id|stringformat:"d" in request.GET.tags %}selected{% endif %}>
+            {{ tag }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Sort By -->
+      <div>
+        <label for="sort_by" class="block text-sm font-medium mb-1">Sort By:</label>
+        <select
+          name="sort_by"
+          id="sort_by"
+          class="bg-gray-700 text-white p-2 rounded border border-gray-600"
+        >
+          <option value="title" {% if request.GET.sort_by == 'title' %}selected{% endif %}>Name</option>
+          <option value="rating" {% if request.GET.sort_by == 'rating' %}selected{% endif %}>Rating</option>
+          <option value="tags" {% if request.GET.sort_by == 'tags' %}selected{% endif %}>Tags</option>
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex items-end">
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow"
+        >
+          Apply
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="flex-1 overflow-y-auto p-6">
+    <table class="table-auto w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-gray-800">
+          <th class="p-4 border border-gray-600">#</th>
+          <th class="p-4 border border-gray-600">Title</th>
+          <th class="p-4 border border-gray-600">Tags</th>
+          <th class="p-4 border border-gray-600">Rating</th>
+          <th class="p-4 border border-gray-600">Solve Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for problem in problems %}
+        <tr class="hover:bg-gray-700">
+          <td class="p-4 border border-gray-600">{{ forloop.counter }}</td>
+          <td class="p-4 border border-gray-600">
+            <a href="{% url 'problem_details' problem.id %}" class="text-blue-400 hover:underline">{{ problem.title }}</a>
+          </td>
+          <td class="p-4 border border-gray-600">
+            {% for tag in problem.tags.all %}
+            <span class="bg-gray-700 px-2 py-1 rounded text-sm mr-2">{{ tag.name }}</span>
+            {% endfor %}
+          </td>
+          <td class="p-4 border border-gray-600">{{ problem.rating }}</td>
+          <td class="p-4 border border-gray-600">
+            {% if problem.is_solved %}
+            <span class="text-green-500">Solved</span>
+            {% else %}
+            <span class="text-red-500">Unsolved</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="5" class="p-4 text-center text-gray-400">No problems found</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
